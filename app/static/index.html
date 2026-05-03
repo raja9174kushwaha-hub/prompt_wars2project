@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ElectionGuide AI – Your interactive election process assistant powered by Google Vertex AI. Ask questions, explore election flows, and test your knowledge." />
+  <meta name="theme-color" content="#0D47A1" />
+  <meta name="author" content="ElectionGuide AI Team" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ElectionGuide AI – Election Process Assistant" />
+  <meta property="og:description" content="AI-powered election guide: ask questions, explore step-by-step election flows, take quizzes, and become an informed voter." />
+  <meta property="og:site_name" content="ElectionGuide AI" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ElectionGuide AI" />
+  <meta name="twitter:description" content="Your interactive election process assistant powered by Google Vertex AI." />
+
+  <title>ElectionGuide AI – Election Process Assistant</title>
+
+  <!-- Favicon (inline SVG, no external file needed) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230D47A1'/%3E%3Ctext x='32' y='46' font-size='36' text-anchor='middle' fill='%23FFB300'%3E🗳%3C/text%3E%3C/svg%3E" type="image/svg+xml" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/static/manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="ElectionGuide" />
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com/icon" />
+
+  <!-- Fonts: Syne (display) + DM Sans (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/static/styles.css" />
+
+  <!-- No inline styles or scripts – CSP friendly -->
+</head>
+<body>
+
+<!-- ────────────────────────────── SKIP LINK (a11y) ──────────────────────── -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ────────────────────────────── HEADER / NAV ──────────────────────────── -->
+<header class="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Primary navigation">
+    <a href="#home" class="brand" aria-label="ElectionGuide AI home">
+      <span class="material-icons-round brand-icon" aria-hidden="true">how_to_vote</span>
+      <span class="brand-name">ElectionGuide <span class="brand-accent">AI</span></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation menu">
+      <span class="material-icons-round" aria-hidden="true">menu</span>
+    </button>
+
+    <ul class="nav-menu" id="navMenu" role="list">
+      <li><a href="#home"     class="nav-link active" data-page="home">Home</a></li>
+      <li><a href="#assistant" class="nav-link" data-page="assistant">AI Assistant</a></li>
+      <li><a href="#flow"     class="nav-link" data-page="flow">Election Flow</a></li>
+      <li><a href="#timeline" class="nav-link" data-page="timeline">Timeline</a></li>
+      <li><a href="#learn"    class="nav-link" data-page="learn">Learn</a></li>
+      <li><a href="#quiz"     class="nav-link" data-page="quiz">Quiz</a></li>
+    </ul>
+
+    <!-- Language toggle -->
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+      <button class="lang-btn" data-lang="hi" aria-pressed="false">हि</button>
+    </div>
+  </nav>
+</header>
+
+<!-- ────────────────────────────── MAIN ──────────────────────────────────── -->
+<main id="main-content">
+
+  <!-- ═══════════════════ PAGE: HOME ═══════════════════ -->
+  <section id="home" class="page active" aria-labelledby="heroHeading">
+
+    <div class="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Powered by Google Vertex AI</p>
+        <h1 id="heroHeading" class="hero-title">
+          Understand<br/>
+          <span class="hero-highlight">Every Election</span><br/>
+          Process
+        </h1>
+        <p class="hero-description">
+          Ask questions, explore step-by-step flows, and become an informed voter with AI-powered guidance.
+        </p>
+        <div class="hero-actions">
+          <a href="#assistant" class="btn btn-primary" data-page="assistant">
+            <span class="material-icons-round btn-icon" aria-hidden="true">smart_toy</span>
+            Ask AI Assistant
+          </a>
+          <a href="#flow" class="btn btn-outline" data-page="flow">
+            <span class="material-icons-round btn-icon" aria-hidden="true">account_tree</span>
+            Explore Flow
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card hc-1">
+          <span class="material-icons-round">how_to_vote</span>
+          <span>Voter Registration</span>
+        </div>
+        <div class="hero-card hc-2">
+          <span class="material-icons-round">ballot</span>
+          <span>Cast Your Vote</span>
+        </div>
+        <div class="hero-card hc-3">
+          <span class="material-icons-round">emoji_events</span>
+          <span>Result Declaration</span>
+        </div>
+        <div class="hero-orb" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="stats-bar" role="region" aria-label="Key statistics">
+      <div class="stat-item">
+        <span class="stat-number" data-target="6">0</span>
+        <span class="stat-label">Election Phases</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="4">0</span>
+        <span class="stat-label">Knowledge Articles</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="5">0</span>
+        <span class="stat-label">Quiz Questions</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="24">0</span>
+        <span class="stat-label">Hours AI Support</span>
+      </div>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="features" role="region" aria-label="Features">
+      <h2 class="section-title">What You Can Do</h2>
+      <div class="feature-grid">
+        <article class="feature-card" tabindex="0">
+          <div class="fc-icon" aria-hidden="true"><span class="material-icons-round">psychology</span></div>
+          <h3 class="fc-title">AI-Powered Q&A</h3>
+          <p class="fc-desc">Ask any election question in plain language and get clear, structured answers instantly.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <div class="fc-icon" aria-hidden="true"><span class="material-icons-round">account_tree</span></div>
+          <h3 class="fc-title">Election Flow</h3>
+          <p class="fc-desc">Explore each phase of the election process through interactive, clickable steps.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <div class="fc-icon" aria-hidden="true"><span class="material-icons-round">timeline</span></div>
+          <h3 class="fc-title">Timeline Tracker</h3>
+          <p class="fc-desc">Visualise election phases and their typical durations on an animated timeline.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <div class="fc-icon" aria-hidden="true"><span class="material-icons-round">quiz</span></div>
+          <h3 class="fc-title">Knowledge Quiz</h3>
+          <p class="fc-desc">Test your election knowledge with multiple-choice questions and instant feedback.</p>
+        </article>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════ PAGE: AI ASSISTANT ═══════════════════ -->
+  <section id="assistant" class="page" aria-labelledby="assistantHeading" hidden>
+
+    <div class="page-header">
+      <h2 id="assistantHeading" class="page-title">
+        <span class="material-icons-round page-title-icon" aria-hidden="true">smart_toy</span>
+        AI Assistant
+      </h2>
+      <p class="page-subtitle">Ask anything about elections. Powered by Google Vertex AI (Gemini).</p>
+    </div>
+
+    <div class="chat-layout">
+      <!-- Suggestions sidebar -->
+      <aside class="chat-sidebar" aria-label="Suggested questions">
+        <h3 class="sidebar-title">Try asking…</h3>
+        <ul class="suggestion-list" id="suggestionList" role="list" aria-label="Example questions">
+          <!-- Populated by JS -->
+          <li class="suggestion-skeleton"></li>
+          <li class="suggestion-skeleton"></li>
+          <li class="suggestion-skeleton"></li>
+        </ul>
+      </aside>
+
+      <!-- Chat window -->
+      <div class="chat-container" role="region" aria-label="Chat conversation">
+        <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-label="Chat messages">
+          <!-- Welcome message -->
+          <div class="chat-message ai-message" role="article" aria-label="AI message">
+            <div class="msg-avatar" aria-hidden="true">
+              <span class="material-icons-round">smart_toy</span>
+            </div>
+            <div class="msg-bubble">
+              <p class="msg-greeting">Hello! I'm <strong>ElectionGuide AI</strong>.</p>
+              <p>I can help you understand:</p>
+              <ul class="msg-list">
+                <li>How elections work</li>
+                <li>Voter registration steps</li>
+                <li>Election timelines &amp; phases</li>
+                <li>Types of elections &amp; voting systems</li>
+              </ul>
+              <p>What would you like to know?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Voice indicator -->
+        <div class="voice-indicator" id="voiceIndicator" aria-live="assertive" hidden>
+          <span class="material-icons-round voice-pulse" aria-hidden="true">mic</span>
+          <span>Listening…</span>
+        </div>
+
+        <!-- Input area -->
+        <form class="chat-input-area" id="chatForm" novalidate aria-label="Send a message">
+          <button type="button" class="voice-btn" id="voiceBtn" aria-label="Start voice input" title="Voice input">
+            <span class="material-icons-round" aria-hidden="true">mic</span>
+          </button>
+          <label for="chatInput" class="sr-only">Your message</label>
+          <textarea
+            id="chatInput"
+            class="chat-input"
+            placeholder="Ask about elections…"
+            rows="1"
+            maxlength="500"
+            aria-describedby="charCount"
+            autocomplete="off"
+            spellcheck="true"
+          ></textarea>
+          <span class="char-count" id="charCount" aria-live="polite">0 / 500</span>
+          <button type="submit" class="send-btn" id="sendBtn" aria-label="Send message">
+            <span class="material-icons-round" aria-hidden="true">send</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════ PAGE: ELECTION FLOW ═══════════════════ -->
+  <section id="flow" class="page" aria-labelledby="flowHeading" hidden>
+
+    <div class="page-header">
+      <h2 id="flowHeading" class="page-title">
+        <span class="material-icons-round page-title-icon" aria-hidden="true">account_tree</span>
+        Election Flow
+      </h2>
+      <p class="page-subtitle">Click any step to learn more about that phase of the election.</p>
+    </div>
+
+    <div class="flow-container" id="flowContainer" role="list" aria-label="Election steps">
+      <!-- Populated by JS -->
+      <div class="flow-loading" aria-live="polite" aria-label="Loading steps">
+        <span class="spinner" aria-hidden="true"></span>
+        <span>Loading election steps…</span>
+      </div>
+    </div>
+
+    <!-- Step detail panel -->
+    <div class="step-detail" id="stepDetail" role="region" aria-label="Step details" hidden>
+      <button class="close-btn" id="closeDetail" aria-label="Close step details">
+        <span class="material-icons-round" aria-hidden="true">close</span>
+      </button>
+      <div class="step-detail-content" id="stepDetailContent"></div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════ PAGE: TIMELINE ═══════════════════ -->
+  <section id="timeline" class="page" aria-labelledby="timelineHeading" hidden>
+
+    <div class="page-header">
+      <h2 id="timelineHeading" class="page-title">
+        <span class="material-icons-round page-title-icon" aria-hidden="true">timeline</span>
+        Election Timeline
+      </h2>
+      <p class="page-subtitle">Typical phases of an election cycle with approximate durations.</p>
+    </div>
+
+    <!-- Progress tracker -->
+    <div class="timeline-progress" role="region" aria-label="Timeline progress">
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar" id="timelineProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Election progress"></div>
+      </div>
+      <p class="progress-label" id="progressLabel">Election in progress</p>
+    </div>
+
+    <div class="timeline-container" id="timelineContainer" role="list" aria-label="Election phases">
+      <!-- Populated by JS -->
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════ PAGE: LEARN ═══════════════════ -->
+  <section id="learn" class="page" aria-labelledby="learnHeading" hidden>
+
+    <div class="page-header">
+      <h2 id="learnHeading" class="page-title">
+        <span class="material-icons-round page-title-icon" aria-hidden="true">school</span>
+        Learn About Elections
+      </h2>
+      <p class="page-subtitle">Structured knowledge articles to build your election literacy.</p>
+    </div>
+
+    <!-- Category filters -->
+    <div class="filter-bar" role="group" aria-label="Filter articles by category">
+      <button class="filter-btn active" data-category="" aria-pressed="true">All</button>
+      <button class="filter-btn" data-category="basics" aria-pressed="false">Basics</button>
+      <button class="filter-btn" data-category="types" aria-pressed="false">Types</button>
+      <button class="filter-btn" data-category="eligibility" aria-pressed="false">Eligibility</button>
+      <button class="filter-btn" data-category="systems" aria-pressed="false">Systems</button>
+    </div>
+
+    <div class="articles-grid" id="articlesGrid" role="list" aria-label="Knowledge articles">
+      <!-- Populated by JS -->
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════ PAGE: QUIZ ═══════════════════ -->
+  <section id="quiz" class="page" aria-labelledby="quizHeading" hidden>
+
+    <div class="page-header">
+      <h2 id="quizHeading" class="page-title">
+        <span class="material-icons-round page-title-icon" aria-hidden="true">quiz</span>
+        Test Your Knowledge
+      </h2>
+      <p class="page-subtitle">Answer 5 questions to check how much you know about elections.</p>
+    </div>
+
+    <div class="quiz-container" id="quizContainer" role="region" aria-label="Quiz">
+      <!-- Start screen -->
+      <div id="quizStart" class="quiz-start">
+        <div class="quiz-start-icon" aria-hidden="true">
+          <span class="material-icons-round">quiz</span>
+        </div>
+        <h3>Ready to Test Your Election Knowledge?</h3>
+        <p>5 multiple-choice questions · Instant feedback · No time limit</p>
+        <button class="btn btn-primary" id="startQuizBtn">
+          <span class="material-icons-round btn-icon" aria-hidden="true">play_arrow</span>
+          Start Quiz
+        </button>
+      </div>
+
+      <!-- Quiz question -->
+      <div id="quizQuestion" class="quiz-question" hidden>
+        <div class="quiz-meta">
+          <span class="quiz-counter" id="quizCounter" aria-live="polite">Question 1 of 5</span>
+          <div class="quiz-score-display" aria-live="polite">Score: <span id="liveScore">0</span></div>
+        </div>
+        <div class="quiz-q-progress" aria-hidden="true">
+          <div class="quiz-q-bar" id="quizProgressBar"></div>
+        </div>
+        <p class="quiz-q-text" id="quizQText" aria-live="polite"></p>
+        <div class="quiz-options" id="quizOptions" role="radiogroup" aria-label="Answer options"></div>
+        <div class="quiz-explanation" id="quizExplanation" aria-live="polite" hidden></div>
+        <button class="btn btn-primary" id="nextBtn" hidden>Next Question</button>
+      </div>
+
+      <!-- Results screen -->
+      <div id="quizResults" class="quiz-results" hidden aria-live="polite">
+        <div class="results-icon" aria-hidden="true">
+          <span class="material-icons-round" id="resultsIcon">emoji_events</span>
+        </div>
+        <h3 id="resultsTitle">Quiz Complete!</h3>
+        <p class="results-score">You scored <strong><span id="finalScore">0</span> / 5</strong></p>
+        <p class="results-message" id="resultsMessage"></p>
+        <button class="btn btn-primary" id="retryBtn">
+          <span class="material-icons-round btn-icon" aria-hidden="true">refresh</span>
+          Try Again
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ────────────────────────────── FOOTER ─────────────────────────────────── -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <p class="footer-brand">
+      <span class="material-icons-round" aria-hidden="true">how_to_vote</span>
+      ElectionGuide AI
+    </p>
+    <p class="footer-note">Powered by <strong>Google Vertex AI (Gemini)</strong> · Deployed on <strong>Cloud Run</strong></p>
+    <p class="footer-copy">&copy; <span id="currentYear"></span> ElectionGuide AI. Built for Hack2Skill.</p>
+  </div>
+</footer>
+
+<!-- Article modal -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close article">
+      <span class="material-icons-round" aria-hidden="true">close</span>
+    </button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true" hidden></div>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top" hidden>
+  <span class="material-icons-round" aria-hidden="true">keyboard_arrow_up</span>
+</button>
+
+<!-- Keyboard shortcut hint -->
+<div class="kbd-hint" id="kbdHint" hidden>
+  Press <kbd>/</kbd> to focus AI chat
+</div>
+
+<script src="/static/app.js" defer></script>
+</body>
+</html>

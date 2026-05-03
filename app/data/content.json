@@ -1,0 +1,51 @@
+{
+  "learn": [
+    {
+      "id": "what-is-election",
+      "title": "What is an Election?",
+      "content": "An election is a formal group decision-making process by which a population chooses an individual or multiple individuals to hold public office. Elections have been the usual mechanism by which modern representative democracy has operated since the 17th century."
+    },
+    {
+      "id": "types-of-elections",
+      "title": "Types of Elections",
+      "content": "Common types of elections include General Elections (to choose national or state representatives), Primary Elections (to select political party candidates), and By-elections (to fill vacancies that arise between general elections)."
+    },
+    {
+      "id": "eligibility",
+      "title": "Eligibility to Vote",
+      "content": "To be eligible to vote in most democratic countries, you must be a citizen of that country, meet the minimum age requirement (usually 18 years old), and be registered to vote in your specific constituency."
+    }
+  ],
+  "phases": [
+    {
+      "id": "registration",
+      "title": "1. Voter Registration",
+      "description": "Eligible citizens register themselves to be included in the electoral roll."
+    },
+    {
+      "id": "nomination",
+      "title": "2. Candidate Nomination",
+      "description": "Political parties or independent candidates file their nomination papers."
+    },
+    {
+      "id": "campaigning",
+      "title": "3. Campaigning",
+      "description": "Candidates present their manifestos and appeal to voters for support."
+    },
+    {
+      "id": "voting",
+      "title": "4. Voting",
+      "description": "Registered voters cast their ballots at designated polling stations on election day."
+    },
+    {
+      "id": "counting",
+      "title": "5. Counting",
+      "description": "Votes are systematically counted by election officials."
+    },
+    {
+      "id": "declaration",
+      "title": "6. Result Declaration",
+      "description": "The winner is officially announced based on the highest number of valid votes."
+    }
+  ]
+}
