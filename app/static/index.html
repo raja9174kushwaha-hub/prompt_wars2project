@@ -43,7 +43,16 @@
 
   <link rel="stylesheet" href="/static/styles.css" />
 
-  <!-- No inline styles or scripts – CSP friendly -->
+  <!-- Google Analytics 4 (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT-ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MEASUREMENT-ID', { send_page_view: true });
+  </script>
+
+  <!-- No inline styles – CSP friendly -->
 </head>
 <body>
 
@@ -395,14 +404,45 @@
 <!-- ────────────────────────────── FOOTER ─────────────────────────────────── -->
 <footer class="site-footer" role="contentinfo">
   <div class="footer-inner">
-    <p class="footer-brand">
-      <span class="material-icons-round" aria-hidden="true">how_to_vote</span>
-      ElectionGuide AI
-    </p>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <p class="footer-brand">
+        <span class="material-icons-round" aria-hidden="true">how_to_vote</span>
+        ElectionGuide AI
+      </p>
+      <button class="btn btn-secondary btn-sm" id="openFeedbackBtn" style="padding: 6px 12px; font-size: 0.85rem;">
+        <span class="material-icons-round btn-icon" style="font-size: 1rem;" aria-hidden="true">feedback</span>
+        Give Feedback
+      </button>
+    </div>
     <p class="footer-note">Powered by <strong>Google Vertex AI (Gemini)</strong> · Deployed on <strong>Cloud Run</strong></p>
     <p class="footer-copy">&copy; <span id="currentYear"></span> ElectionGuide AI. Built for Hack2Skill.</p>
   </div>
 </footer>
+
+<!-- Feedback Modal -->
+<div class="modal-overlay" id="feedbackModal" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle" hidden>
+  <div class="modal-box" style="max-width: 400px;">
+    <button class="modal-close" id="feedbackClose" aria-label="Close feedback">
+      <span class="material-icons-round" aria-hidden="true">close</span>
+    </button>
+    <div class="modal-content">
+      <h2 id="feedbackTitle" style="margin-top:0">We value your feedback</h2>
+      <p class="page-subtitle" style="margin-bottom:1rem">How would you rate ElectionGuide AI?</p>
+      
+      <div class="feedback-stars" id="feedbackStars" style="display:flex; gap:8px; margin-bottom:1rem; font-size:2rem; cursor:pointer; color:#ccc;">
+        <span class="material-icons-round star" data-val="1">star_border</span>
+        <span class="material-icons-round star" data-val="2">star_border</span>
+        <span class="material-icons-round star" data-val="3">star_border</span>
+        <span class="material-icons-round star" data-val="4">star_border</span>
+        <span class="material-icons-round star" data-val="5">star_border</span>
+      </div>
+      
+      <textarea id="feedbackComment" class="chat-input" placeholder="Any suggestions to improve?" style="width:100%; height:80px; margin-bottom:1rem; padding:12px;"></textarea>
+      
+      <button class="btn btn-primary" id="submitFeedbackBtn" style="width:100%" disabled>Submit Feedback</button>
+    </div>
+  </div>
+</div>
 
 <!-- Article modal -->
 <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>

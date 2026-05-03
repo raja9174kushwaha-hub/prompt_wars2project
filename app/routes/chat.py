@@ -11,7 +11,10 @@ from pydantic import BaseModel, Field, field_validator
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
+import time as _time
+
 from app.services.ai_service import get_ai_response
+from app.services.analytics_service import log_chat_interaction
 from app.utils.validators import (
     sanitize_message,
     validate_chat_history,
@@ -84,7 +87,18 @@ async def chat_message(
         len(history_dicts) if history_dicts else 0,
     )
 
+    start = _time.perf_counter()
     ai_response = await get_ai_response(payload.message, history_dicts, payload.language)
+    elapsed_ms = round((_time.perf_counter() - start) * 1000, 1)
+
+    # Log interaction to Firestore (fire-and-forget, non-blocking)
+    await log_chat_interaction(
+        message=payload.message,
+        response=ai_response,
+        language=payload.language,
+        response_time_ms=elapsed_ms,
+    )
+
     return ChatResponse(response=ai_response, language=payload.language)
 
 

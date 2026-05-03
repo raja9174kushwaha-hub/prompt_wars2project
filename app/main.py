@@ -21,7 +21,7 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
-from app.routes import chat, election, health
+from app.routes import chat, election, feedback, health
 from app.utils.logging_config import setup_logging
 
 # ---------------------------------------------------------------------------
@@ -100,6 +100,7 @@ def create_app() -> FastAPI:
     app.include_router(health.router, prefix="/api", tags=["health"])
     app.include_router(chat.router, prefix="/api/chat", tags=["chat"])
     app.include_router(election.router, prefix="/api/election", tags=["election"])
+    app.include_router(feedback.router, prefix="/api", tags=["feedback"])
 
     # ── Static files ────────────────────────────────────────────────────────
     static_dir = os.path.join(os.path.dirname(__file__), "static")

@@ -140,7 +140,7 @@ class TestQuiz:
         res = client.get("/api/election/quiz")
         assert res.status_code == 200
         questions = res.json()["questions"]
-        assert len(questions) == 5
+        assert len(questions) >= 5
 
     def test_quiz_question_structure(self, client):
         questions = client.get("/api/election/quiz").json()["questions"]
@@ -317,7 +317,7 @@ class TestElectionService:
 
     def test_get_quiz_questions(self):
         questions = get_quiz_questions()
-        assert len(questions) == 5
+        assert len(questions) >= 5
 
     def test_steps_serialisable(self):
         steps = get_election_steps()

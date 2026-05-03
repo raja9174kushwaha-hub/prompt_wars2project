@@ -15,6 +15,11 @@ slowapi==0.1.9
 # ── Google AI (Gemini via google-generativeai SDK) ─────────
 google-generativeai==0.8.3
 
+# ── Google Cloud Services ─────────────────────────────────
+google-cloud-firestore==2.19.0
+google-cloud-logging==3.11.3
+google-cloud-storage==2.18.2
+
 # ── Validation ────────────────────────────────────────────
 pydantic==2.10.4
 pydantic-settings==2.7.0

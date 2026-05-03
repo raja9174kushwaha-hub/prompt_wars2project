@@ -990,6 +990,17 @@ function showResults() {
   qs('#resultsTitle').textContent = title;
   qs('#resultsMessage').textContent = msg;
   results.focus?.();
+
+  // Log to analytics
+  fetch('/api/quiz-result', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      score: score,
+      total: total,
+      time_taken_seconds: 0
+    })
+  }).catch(() => {});
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1070,6 +1081,70 @@ function registerServiceWorker() {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   FEEDBACK SYSTEM
+   ═══════════════════════════════════════════════════════════ */
+
+function initFeedback() {
+  const openBtn = document.getElementById('openFeedbackBtn');
+  const closeBtn = document.getElementById('feedbackClose');
+  const modal = document.getElementById('feedbackModal');
+  const stars = qsa('#feedbackStars .star');
+  const submitBtn = document.getElementById('submitFeedbackBtn');
+  const comment = document.getElementById('feedbackComment');
+  let currentRating = 0;
+
+  if (!openBtn || !modal) return;
+
+  openBtn.addEventListener('click', () => {
+    modal.hidden = false;
+    currentRating = 0;
+    stars.forEach(s => {
+      s.textContent = 'star_border';
+      s.style.color = '#ccc';
+    });
+    comment.value = '';
+    submitBtn.disabled = true;
+  });
+
+  closeBtn?.addEventListener('click', () => { modal.hidden = true; });
+
+  stars.forEach((star, index) => {
+    star.addEventListener('click', () => {
+      currentRating = index + 1;
+      submitBtn.disabled = false;
+      stars.forEach((s, i) => {
+        s.textContent = i < currentRating ? 'star' : 'star_border';
+        s.style.color = i < currentRating ? '#FFB300' : '#ccc';
+      });
+    });
+  });
+
+  submitBtn.addEventListener('click', async () => {
+    if (currentRating === 0) return;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    try {
+      await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          rating: currentRating,
+          comment: comment.value.trim(),
+          page: state.currentPage
+        })
+      });
+      showToast('Thank you for your feedback!');
+    } catch {
+      showToast('Feedback submitted locally.');
+    } finally {
+      modal.hidden = true;
+      submitBtn.textContent = 'Submit Feedback';
+    }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
    BOOTSTRAP
    ═══════════════════════════════════════════════════════════ */
 
@@ -1080,6 +1155,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModalControls();
   initGlobalKeyboard();
   initScrollToTop();
+  initFeedback();
   registerServiceWorker();
   showKeyboardHint();
 
